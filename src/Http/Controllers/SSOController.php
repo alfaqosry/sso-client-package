@@ -22,12 +22,18 @@ class SSOController extends Controller
 
         $ssoClient = app(SSOClient::class);
 
-        $query = http_build_query([
+        $queryParams = [
             'client_id'     => config('sso.client_id'),
             'redirect_uri'  => $this->getRedirectUri(),
             'response_type' => 'code',
             'scope'         => config('sso.scope', '*'),
-        ]);
+        ];
+
+        if ($prompt = config('sso.prompt')) {
+            $queryParams['prompt'] = $prompt;
+        }
+
+        $query = http_build_query($queryParams);
 
         return redirect()->away($ssoClient->getBaseUrl() . '/oauth/authorize?' . $query);
     }

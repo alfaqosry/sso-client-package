@@ -111,6 +111,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Prompt (Force Re-authentication)
+    |--------------------------------------------------------------------------
+    |
+    | Set 'login' untuk memaksa user memasukkan kredensial lagi pada SSO Server.
+    | Set null atau '' jika tidak ingin memaksa re-autentikasi.
+    |
+    */
+    'prompt' => env('SSO_PROMPT', 'login'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Routes Prefix
     |--------------------------------------------------------------------------
     |
